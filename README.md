@@ -8,7 +8,7 @@ Click by kanji in "Wanikani" section open kanji page at [wanikani.com](https://w
 
 <img src="example.jpg" width="50%" height="50%">
 
-# installations
+# Installation
 
 Add [jbpd_wanikani_reference.js](https://github.com/dancing-elf/jpdb-wanikani-reference/blob/main/jbpd_wanikani_reference.js) to tampermonkey.
 
