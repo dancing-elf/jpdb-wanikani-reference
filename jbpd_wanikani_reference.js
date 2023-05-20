@@ -41,23 +41,30 @@
         if (used.length === 0) {
             return;
         }
-        let div = document.createElement('div');
-        let innerHTML = "<h6 class='subsection-label'>Wanikani</h6>"
-        innerHTML += "<div class='subsection'><ul style='box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; list-style: none; margin: 0;padding: 0;border: 0'>";
+
+        let elements = '';
         for (const k of used) {
-            let html = "<li style='width: 17%; flex: 0 0 17%'>" +
-                "<a href='https://www.wanikani.com/kanji/" + k.char + "'" +
-                " style='display:flex; color:#000;text-decoration: none; align-items: center; flex-direction: column'>" +
-                "<span lang='ja' style='font-size: 250%'>" + k.char + "</span>" +
-                "<ul style='list-style: none; margin: 0; padding: 0; border: 0; font-size: 100%'>" +
-                "<li lang='ja' style='text-align: center; margin: 0;padding: 0; font-size: 100%'>" + k.reading + "</li>" +
-                "<li lang='ja' style='text-align: center; margin: 0;padding: 0; font-size: 100%'>" + k.meaning + "</li>" +
-                "</ul>" +
-                "</a></li>";
-            innerHTML += html;
+            elements += `
+                <li style='min-width: 4rem'>
+                  <a href='https://www.wanikani.com/kanji/${k.char}'
+                     style='display:flex; color:#000;text-decoration: none; align-items: center; flex-direction: column'>
+                    <span lang='ja' style='font-size: 250%'>${k.char}</span>
+                    <ul style='list-style: none; margin: 0; padding: 0; border: 0; font-size: 100%'>
+                    <li lang='ja' style='text-align: center; margin: 0;padding: 0; font-size: 100%'>${k.reading}</li>
+                    <li lang='ja' style='text-align: center; margin: 0;padding: 0; font-size: 100%'>${k.meaning}</li>
+                  </ul>
+                  </a>
+                </li>`;
         }
-        innerHTML += "</ul></div>"
-        div.innerHTML = innerHTML;
+        let div = document.createElement('div');
+        div.innerHTML = `
+        <h6 class='subsection-label'>Wanikani</h6>
+        <div class='subsection' style='padding: 0'>
+            <ul style='box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; 
+                       list-style: none; margin: 0;padding: 0;border: 0'>
+            ${elements}
+            </ul>
+        </div>`;
 
         document.querySelector('.subsection-meanings').insertAdjacentElement('afterend', div)
     });
