@@ -6,6 +6,10 @@ Click by kanji in "Wanikani" section open kanji page at [wanikani.com](https://w
 
 <img src="review_example.jpg" width="50%" height="50%">
 
+# installations
+
+Add jbpd_wanikani_reference.js to tampermonkey.
+
 # Part for developers
 Sorry for such awfull code :( But it works and now it is more than enough for me.
 
