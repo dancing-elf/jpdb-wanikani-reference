@@ -58,7 +58,7 @@
         }
         let div = document.createElement('div');
         div.innerHTML = `
-        <h6 class='subsection-label'>Wanikani</h6>
+        <h6 class='subsection-label'>WaniKani</h6>
         <div class='subsection' style='padding: 0'>
             <ul style='box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; 
                        list-style: none; margin: 0;padding: 0;border: 0'>
