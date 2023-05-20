@@ -2,6 +2,8 @@
 
 Basic imlementation that allow to add refrences to wanikani kanji to jpdb review/voculabrary pages.
 
+For onyomi readings katakana is used.
+
 Click by kanji in "Wanikani" section open kanji page at [wanikani.com](https://www.wanikani.com/).
 
 <img src="example.jpg" width="50%" height="50%">
