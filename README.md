@@ -2,6 +2,10 @@
 
 Basic imlementation that allow to add refrences to wanikani kanji to jpdb review/voculabrary pages.
 
+Click by kanji in "Wanikani" section open kanji page at [wanikani.com](https://www.wanikani.com/).
+
+<img src="review_example.jpg" width="50%" height="50%">
+
 # Part for developers
 Sorry for such awfull code :( But it works and now it is more than enough for me.
 
