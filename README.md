@@ -27,38 +27,5 @@ curl "https://api.wanikani.com/v2/subjects?types=kanji&page_after_id=1439" \
 curl "https://api.wanikani.com/v2/subjects?types=kanji&page_after_id=2439" \
 -H "Authorization: Bearer WANIKANI_TOKEN" > k3.json
 ```
-2) Generate json structure for using in script.
-```
-const fs = require("fs");
-const workFolder = 'YOUR_FOLDER HERE'
-
-function readJson(filePath) {
-    const fileData = fs.readFileSync(filePath);
-    return JSON.parse(fileData);
-}
-
-const k1 = readJson(workFolder + "/k1.json");
-const k2 = readJson(workFolder + "/k2.json");
-const k3 = readJson(workFolder + "/k3.json");
-
-var result = {};
-for (const kanjiFullInfo of k1.data.concat(k2.data, k3.data)) {
-    const data = kanjiFullInfo.data;
-
-    //console.log(data);
-
-    const charachter = data.characters;
-    const level = data.level;
-    const reading = data.readings.find(v => v.primary = 'true').reading;
-    const meaning = data.meanings.find(v => v.primary = 'true').meaning;
-    result[charachter] = {
-        "level": level,
-        "reading": reading,
-        "meaning": meaning
-    }
-}
-
-const jsonResult = JSON.stringify(result);
-fs.writeFileSync(workFolder + '/kanji_data.json', jsonResult);
-```
+2) Generate json structure for using in script with [prepare_kanji_map.js](https://github.com/dancing-elf/jpdb-wanikani-reference/blob/main/prepare_kanji_map.js)
 
