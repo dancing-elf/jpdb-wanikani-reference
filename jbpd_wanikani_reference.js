@@ -11,14 +11,22 @@
 
 (function() {
 
-    // sorry for so bad code, but for me it's enough right now
+    // sorry for bad code, but for me it's enough right now
     // inspired by https://gist.github.com/luizbafilho/bf0ff14ce595ba009f2d4ac92e7cc6da
 
     'use strict';
 
     const kanjiData = loadKanjiData();
 
-    let vocab = document.querySelector('.plain').cloneNode(true)
+    // try selector for review page
+    let node = document.querySelector('.answer-box .plain');
+    if (!node) {
+        // selector for vocab page
+        node = document.querySelector('.primary-spelling').cloneNode(true);
+    }
+
+    // remove furigana if exists
+    let vocab = node.cloneNode(true)
     let rts = vocab.querySelectorAll('rt')
     rts.forEach(function(rt) { rt.remove() })
 
@@ -36,8 +44,8 @@
             });
         }
     }
-
-    waitForElm('.subsection-meanings .subsection').then((elm) => {
+    // subsection-meanings ?
+    waitForElm('.subsection-pitch-accent .subsection').then((elm) => {
         if (used.length === 0) {
             return;
         }
@@ -47,11 +55,11 @@
             elements += `
                 <li style='min-width: 4rem'>
                   <a href='https://www.wanikani.com/kanji/${k.char}'
-                     style='display:flex; color:#000;text-decoration: none; align-items: center; flex-direction: column'>
+                     style='display:flex; flex-direction: column; color:#000; text-decoration: none; align-items: center;'>
                     <span lang='ja' style='font-size: 250%'>${k.char}</span>
                     <ul style='list-style: none; margin: 0; padding: 0; border: 0; font-size: 100%'>
-                    <li lang='ja' style='text-align: center; margin: 0;padding: 0; font-size: 100%'>${k.reading}</li>
-                    <li lang='ja' style='text-align: center; margin: 0;padding: 0; font-size: 100%'>${k.meaning}</li>
+                    <li lang='ja' style='text-align: center; margin: 0; padding: 0; font-size: 100%'>${k.reading}</li>
+                    <li lang='ja' style='text-align: center; margin: 0; padding: 0; font-size: 100%'>${k.meaning}</li>
                   </ul>
                   </a>
                 </li>`;
@@ -66,7 +74,7 @@
             </ul>
         </div>`;
 
-        document.querySelector('.subsection-meanings').insertAdjacentElement('afterend', div)
+        document.querySelector('.subsection-pitch-accent').insertAdjacentElement('afterend', div)
     });
 })();
 
