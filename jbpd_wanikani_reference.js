@@ -2,12 +2,21 @@
 // @name         JPDB wanikani references
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
+// @description  add references to WaniKani for word's kanji
 // @author       You
 // @match        https://jpdb.io/review*
 // @match        https://jpdb.io/vocabulary*
 // @grant        none
 // ==/UserScript==
+
+// by default use jpdb font
+// but to separate wanikani you may want to use something like YuKyokasho, Tsukushi A Round Gothic, Klee, Kaiti SC
+// not implemented because redefine font for whole page may be better
+// const wanikaniFont = undefined;
+
+// After which block WaniKani block would appear. subsection-meanings could be more convenient
+const wanikaniPositionSelector = '.subsection-pitch-accent';
+// const wanikaniPositionSelector = '.subsection-meanings';
 
 (function() {
 
@@ -22,6 +31,7 @@
     let node = document.querySelector('.answer-box .plain');
     if (!node) {
         // selector for vocab page
+        // good word for test is https://jpdb.io/vocabulary/1254090/%E6%AC%A0%E7%89%87/%E3%81%8B%E3%81%91%E3%82%89#a
         node = document.querySelector('.primary-spelling').cloneNode(true);
     }
 
@@ -44,8 +54,8 @@
             });
         }
     }
-    // subsection-meanings ?
-    waitForElm('.subsection-pitch-accent .subsection').then((elm) => {
+    //  ?
+    waitForElm(`${wanikaniPositionSelector} .subsection`).then((elm) => {
         if (used.length === 0) {
             return;
         }
@@ -68,13 +78,14 @@
         div.innerHTML = `
         <h6 class='subsection-label'>WaniKani</h6>
         <div class='subsection' style='padding: 0'>
-            <ul style='box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; 
-                       list-style: none; margin: 0;padding: 0;border: 0'>
+            <ul style='display: flex; flex-wrap: wrap; align-items: center; 
+                       box-sizing: border-box; list-style: none; 
+                       margin: 0;padding: 0; border: 0'>
             ${elements}
             </ul>
         </div>`;
 
-        document.querySelector('.subsection-pitch-accent').insertAdjacentElement('afterend', div)
+        document.querySelector(`${wanikaniPositionSelector}`).insertAdjacentElement('afterend', div)
     });
 })();
 
