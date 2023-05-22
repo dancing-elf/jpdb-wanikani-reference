@@ -66,7 +66,8 @@ const wanikaniPositionSelector = '.subsection-pitch-accent';
             elements += `
                 <li style='min-width: 4rem'>
                   <a href='https://www.wanikani.com/kanji/${k.char}'
-                     style='display:flex; flex-direction: column; color:#000; text-decoration: none; align-items: center;'>
+                     class='plain'
+                     style='display:flex; flex-direction: column; text-decoration: none; align-items: center;'>
                     <span lang='ja' style='font-size: 250%'>${k.char}</span>
                     <ul style='list-style: none; margin: 0; padding: 0; border: 0; font-size: 100%'>
                     <li lang='ja' style='text-align: center; margin: 0; padding: 0; font-size: 100%'>${k.reading}</li>
