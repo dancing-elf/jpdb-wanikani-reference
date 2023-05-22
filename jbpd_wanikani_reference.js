@@ -54,8 +54,9 @@ const wanikaniPositionSelector = '.subsection-pitch-accent';
             });
         }
     }
-    //  ?
-    waitForElm(`${wanikaniPositionSelector} .subsection`).then((elm) => {
+    // waiting for answer appearing
+    const meaningSelector = '.subsection-meanings';
+    waitForElm(`${meaningSelector} .subsection`).then((elm) => {
         if (used.length === 0) {
             return;
         }
@@ -85,7 +86,12 @@ const wanikaniPositionSelector = '.subsection-pitch-accent';
             </ul>
         </div>`;
 
-        document.querySelector(`${wanikaniPositionSelector}`).insertAdjacentElement('afterend', div)
+        let position = document.querySelector(`${wanikaniPositionSelector}`);
+        if (!position) {
+            //fallback
+            position = document.querySelector(`${meaningSelector}`);
+        }
+        position.insertAdjacentElement('afterend', div)
     });
 })();
 
